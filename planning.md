@@ -32,6 +32,8 @@ Make an app that mimics what a company like starbucks would want.
   - update
   - remove
   - get
+  - assignManager
+  - updateStock
   
 - users (type customer, clerk, manager, stocker)
   - create
