@@ -10,7 +10,7 @@ Make an app that mimics what a company like starbucks would want.
 - have shipping app
 - shipping automatically gets store stock info and gets tasks to ship items to stores
 
-## so for clients:
+## for clients:
 - customer
 - clerk
 - manager
@@ -20,9 +20,36 @@ Make an app that mimics what a company like starbucks would want.
 ## for backend services:
 - GraphQL API which manages all talk between clients and backend services
 - products
+  - create
+  - update
+  - remove
+  - get
+  - getByType
+  - getAll
+  
 - stores
+  - create
+  - update
+  - remove
+  - get
+  
 - users (type customer, clerk, manager, stocker)
-- promotions
-- billing
-- shipping
+  - create
+  - update
+  - remove
+  
+- promotions (needs products, stores)
+  - create
+  - update
+  - remove
+  
+- billing (needs users, stores)
+  - processAppPayment
+  - processTilPayment
+  
+- shipping (needs stores)
+  - addProductToWarehouse
+  - addStoreOrder
+  - completeStoreOrder
+  
 
