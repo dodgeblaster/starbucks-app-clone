@@ -18,6 +18,7 @@ Make an app that mimics what a company like starbucks would want.
 - storefront-screens
 
 ## for backend services:
+- GraphQL API which manages all talk between clients and backend services
 - products
 - stores
 - users (type customer, clerk, manager, stocker)
