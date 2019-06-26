@@ -1,0 +1,21 @@
+{
+    "globals": {
+        "ts-jest": {
+            "tsConfigFile": "tsconfig.json"
+        },
+
+        "awsState": {
+            "sns": []
+        }
+    },
+    "moduleFileExtensions": ["ts", "js"],
+    "transform": {
+        "^.+\\.(ts|tsx)$": "ts-jest"
+    },
+    "testMatch": ["**/?(*.)(spec|integration.test).ts?(x)"],
+
+    "testEnvironment": "node",
+    "collectCoverage": true,
+    "collectCoverageFrom": ["src/infra/repo/real/**/*.ts"],
+    "testPathIgnorePatterns": ["src/infra/repo/mock"]
+}

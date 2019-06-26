@@ -1,0 +1,94 @@
+service: NAME
+
+plugins:
+    - serverless-webpack
+    - serverless-offline
+    - serverless-pseudo-parameters
+
+provider:
+    name: aws
+    stage: ${opt:stage, 'dev'}
+    runtime: nodejs8.10
+    tracing: true
+    environment:
+        REGION: ${opt:region, 'us-east-1'}
+        STAGE: ${opt:stage, 'dev'}
+        TABLE: ${self:service}
+
+    iamRoleStatements:
+        - Effect: Allow
+          Action:
+              - lambda:*
+          Resource: 'arn:aws:lambda:#{AWS::Region}:#{AWS::AccountId}:*'
+        - Effect: Allow
+          Action:
+              - SNS:CreateTopic
+              - SNS:Publish
+              - SNS:Subscribe
+          Resource: 'arn:aws:sns:#{AWS::Region}:#{AWS::AccountId}:*'
+        - Effect: Allow
+          Action:
+              - dynamodb:Query
+              - dynamodb:Scan
+              - dynamodb:GetItem
+              - dynamodb:PutItem
+              - dynamodb:UpdateItem
+              - dynamodb:DeleteItem
+          Resource: 'arn:aws:dynamodb:#{AWS::Region}:#{AWS::AccountId}:*'
+
+custom:
+    stage: ${opt:stage, self:provider.stage}
+    region: ${opt:region, self:provider.region}
+
+functions:
+    # REQUEST RESPONSE FOR GRAPHQL SERVICE
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    # exampleFunction:
+    #     handler: src/triggers/index.exampleFunction
+    #
+    #
+    #
+    # SNS TRIGGERS
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    # exampleSnsTriggererFunction:
+    #     handler: src/triggers/index.exampleSnsTriggererFunction
+    #     events:
+    #         - sns: arn:aws:sns:#{AWS::Region}:#{AWS::AccountId}:exeample-event-${opt:stage, 'dev'}
+    #
+    #
+    #
+    # SCHEDULED TRIGGERS
+    # exampleCronTriggeredFunction:
+    #     handler: src/triggers/index.exampleCronTriggeredFunction
+    #     timeout: 600
+    #     events:
+    #         - schedule: rate(15 minutes)
+
+resources:
+    Resources:
+        stressTrackerTable:
+            Type: AWS::DynamoDB::Table
+            Properties:
+                TableName: ${self:service}-${self:custom.stage}
+                AttributeDefinitions:
+                    - AttributeName: PK
+                      AttributeType: S
+                    - AttributeName: SK
+                      AttributeType: S
+                    - AttributeName: GSI1
+                      AttributeType: S
+                KeySchema:
+                    - AttributeName: PK
+                      KeyType: HASH
+                    - AttributeName: SK
+                      KeyType: RANGE
+                BillingMode: PAY_PER_REQUEST
+                GlobalSecondaryIndexes:
+                    - IndexName: GSI1
+                      KeySchema:
+                          - AttributeName: GSI1
+                            KeyType: HASH
+                          - AttributeName: SK
+                            KeyType: RANGE
+                      Projection:
+                          ProjectionType: ALL

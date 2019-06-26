@@ -1,0 +1,80 @@
+{
+    "name": "stress-tracker",
+    "version": "1.0.0",
+    "main": "index.js",
+    "license": "MIT",
+    "scripts": {
+        "start": "serverless offline --port 3000",
+        "deploy": "jest && npm run test-int && serverless deploy",
+        "deploy-qa": "serverless deploy --stage qa",
+        "deploy-prod": "serverless deploy --stage prod",
+        "test-unit": "jest --watch --verbose=false",
+        "test-int": "jest -c jest-int-config.json --runInBand --detectOpenHandles",
+        "ci-test": "jest && npm run test-int t",
+        "ci-deploy": "serverless deploy"
+    },
+    "dependencies": {
+        "ajv": "^6.10.0",
+        "aws-xray-sdk": "^2.2.0",
+        "faker": "^4.1.0",
+        "moment": "^2.24.0",
+        "uuid": "^3.3.2"
+    },
+    "devDependencies": {
+        "@types/aws-lambda": "8.10.1",
+        "@types/jest": "^21.1.5",
+        "@types/node": "^8.0.57",
+        "aws-sdk": "^2.290.0",
+        "jest": "^23.6.0",
+        "serverless-offline": "^3.25.7",
+        "serverless-pseudo-parameters": "^2.2.0",
+        "serverless-webpack": "^5.1.1",
+        "ts-jest": "^22.4.6",
+        "ts-loader": "^4.2.0",
+        "typescript": "^2.8.1",
+        "webpack": "^4.5.0"
+    },
+    "jest": {
+        "globals": {
+            "ts-jest": {
+                "tsConfigFile": "tsconfig.json"
+            }
+        },
+        "moduleFileExtensions": [
+            "ts",
+            "js"
+        ],
+        "testPathIgnorePatterns": [
+            "src/infra/"
+        ],
+        "collectCoverageFrom": [
+            "src/domain/**/*.ts"
+        ],
+        "coverageThreshold": {
+            "global": {
+                "branches": 0,
+                "functions": 70,
+                "lines": 70,
+                "statements": 70
+            }
+        },
+        "collectCoverage": true,
+        "coverageReporters": [
+            "text",
+            "html",
+            "json-summary"
+        ],
+        "reporters": [
+            "default",
+            "<rootDir>/my-custom-reporter.js"
+        ],
+        "transform": {
+            "^.+\\.(ts|tsx)$": "./node_modules/ts-jest/preprocessor.js"
+        },
+        "testMatch": [
+            "**/__tests__/**/*.ts?(x)",
+            "**/?(*.)(spec|test).ts?(x)"
+        ],
+        "testEnvironment": "node"
+    }
+}
