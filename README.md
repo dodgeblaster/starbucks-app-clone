@@ -1,6 +1,6 @@
 # starbucks-app-clone
 
-This is a demo app, demonstrating how to build a solution with multiple clients accessing a set of serverless microservices. 
+This is a demo app, demonstrating how to build a solution with multiple frontend clients accessing a set of serverless microservices. 
 
 ### FRONT
 For the front end, we will be building:
