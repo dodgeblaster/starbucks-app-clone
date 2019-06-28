@@ -8,7 +8,7 @@
         "deploy": "jest && npm run test-int && serverless deploy",
         "deploy-qa": "serverless deploy --stage qa",
         "deploy-prod": "serverless deploy --stage prod",
-        "test-unit": "jest --watch --verbose=false",
+        "test-unit": "./node_modules/.bin/jest --watch --verbose=false",
         "test-int": "jest -c jest-int-config.json --runInBand --detectOpenHandles",
         "ci-test": "jest && npm run test-int t",
         "ci-deploy": "serverless deploy"
@@ -25,7 +25,7 @@
         "@types/jest": "^21.1.5",
         "@types/node": "^8.0.57",
         "aws-sdk": "^2.290.0",
-        "jest": "^23.6.0",
+        "jest": "^28.4.0",
         "serverless-offline": "^3.25.7",
         "serverless-pseudo-parameters": "^2.2.0",
         "serverless-webpack": "^5.1.1",
