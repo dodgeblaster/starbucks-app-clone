@@ -23,7 +23,7 @@ export default (arr): Repo => ({
     get: async data => {
         arr.push({
             type: 'DB',
-            name: 'remove',
+            name: 'get',
             data
         })
 
@@ -32,7 +32,7 @@ export default (arr): Repo => ({
     getAll: async () => {
         arr.push({
             type: 'DB',
-            name: 'remove',
+            name: 'getAll',
             data: {}
         })
 
@@ -41,7 +41,7 @@ export default (arr): Repo => ({
     getAllByType: async data => {
         arr.push({
             type: 'DB',
-            name: 'remove',
+            name: 'getAllByType',
             data
         })
 
