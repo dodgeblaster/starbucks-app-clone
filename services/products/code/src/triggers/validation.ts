@@ -1,6 +1,6 @@
 const INVALID_MESSAGE = 'Invalid Input'
 
-const exists = x => x !== null || x !== undefined
+const exists = x => x !== null && x !== undefined
 const validType = (x, type) => exists(x) && typeof x === type
 const throwError = () => {
     throw new Error(INVALID_MESSAGE)
