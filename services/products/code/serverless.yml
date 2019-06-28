@@ -41,8 +41,23 @@ custom:
     region: ${opt:region, self:provider.region}
 
 functions:
+    getAll:
+        handler: src/triggers/index.getAll
+
+    getAllByType:
+        handler: src/triggers/index.getAllByType
+
+    get:
+        handler: src/triggers/index.get
+
     create:
         handler: src/triggers/index.create
+
+    update:
+        handler: src/triggers/index.update
+
+    remove:
+        handler: src/triggers/index.remove
 
 resources:
     Resources:
