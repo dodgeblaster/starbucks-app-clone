@@ -61,7 +61,7 @@ functions:
 
 resources:
     Resources:
-        stressTrackerTable:
+        productsTable:
             Type: AWS::DynamoDB::Table
             Properties:
                 TableName: ${self:service}-${self:custom.stage}

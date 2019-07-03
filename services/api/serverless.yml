@@ -1,0 +1,53 @@
+service: starbucksclone-api
+
+plugins:
+    - serverless-webpack
+    - serverless-offline
+    - serverless-pseudo-parameters
+    #- serverless-plugin-warmup
+
+provider:
+    name: aws
+    runtime: nodejs8.10
+
+    environment:
+        STAGE: ${opt:stage, 'dev'}
+        REGION: ${opt:region, 'us-east-1'}
+        USERPOOL_ID: ${file(./env.json):${opt:stage, 'dev'}.USERPOOL_ID}
+        APP_CLIENT_ID: ${file(./env.json):${opt:stage, 'dev'}.APP_CLIENT_ID}
+
+    iamRoleStatements:
+        - Effect: Allow
+          Action:
+              - lambda:*
+          Resource: '*'
+        - Effect: Allow
+          Action:
+              - dynamodb:Query
+              - dynamodb:Scan
+              - dynamodb:GetItem
+              - dynamodb:PutItem
+              - dynamodb:UpdateItem
+              - dynamodb:DeleteItem
+          Resource: 'arn:aws:dynamodb:#{AWS::Region}:*:*'
+
+custom:
+    stage: ${opt:stage, self:provider.stage}
+    region: ${opt:region, self:provider.region}
+    userPool: origamai-users
+    table: users
+    # warmup:
+    #     default: true
+
+functions:
+    graphql:
+        timeout: 30
+        handler: handler.server
+        events:
+            - http:
+                  path: /
+                  method: post
+                  cors: true
+                  #authorizer: ${file(./env.json):${opt:stage, 'dev'}.COGNITO_ARN}
+# resources:
+#     - ${file(resources/cognito.yml)}

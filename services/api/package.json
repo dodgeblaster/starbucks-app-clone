@@ -1,0 +1,96 @@
+{
+    "name": "starbucksclone-api",
+    "version": "1.0.0",
+    "main": "index.js",
+    "license": "MIT",
+    "scripts": {
+        "start": "serverless offline --port 4000",
+        "deploy": "serverless deploy",
+        "deploy-int": "serverless deploy --stage int --aws-profile work-prod",
+        "deploy-qa": "serverless deploy --stage qa --aws-profile work-prod",
+        "deploy-prod": "serverless deploy --stage prod --aws-profile work-prod --region ca-central-1",
+        "test-unit": "./node_modules/.bin/jest --watch --verbose=false",
+        "test-int": "echo \"GraphQL api does not yet have int-tests\"",
+        "ci-test": "jest && ./node_modules/.bin/jest-coverage-badges",
+        "ci-deploy": "echo \"GraphQL api does not yet have ci-deploy\"",
+        "make-badges": "node_modules/.bin/jest-badges-readme"
+    },
+    "dependencies": {
+        "@olavoparno/jest-badges-readme": "^1.3.4",
+        "apollo-errors": "^1.9.0",
+        "graphql-import-loader": "^0.2.1",
+        "graphql-yoga": "^1.15.1",
+        "https": "^1.0.0",
+        "jsonwebtoken": "^8.3.0",
+        "jwks-rsa": "^1.3.0",
+        "node-jose": "^1.0.0",
+        "sls-aws-utils": "^1.0.0",
+        "utils": "^0.3.1"
+    },
+    "devDependencies": {
+        "@types/aws-lambda": "8.10.1",
+        "@types/jest": "^21.1.5",
+        "@types/node": "^8.0.57",
+        "aws-sdk": "^2.290.0",
+        "jest": "^23.6.0",
+        "serverless": "^1.30.0",
+        "serverless-offline": "^3.25.7",
+        "serverless-plugin-warmup": "^4.2.0-rc.1",
+        "serverless-pseudo-parameters": "^2.4.0",
+        "serverless-webpack": "^5.1.1",
+        "source-map-support": "^0.5.12",
+        "ts-jest": "^22.4.6",
+        "ts-loader": "^4.2.0",
+        "typescript": "^2.8.1",
+        "webpack": "^4.5.0"
+    },
+    "jest": {
+        "globals": {
+            "ts-jest": {
+                "tsConfigFile": "tsconfig.json"
+            }
+        },
+        "moduleFileExtensions": [
+            "ts",
+            "js"
+        ],
+        "collectCoverageFrom": [
+            "src/resolvers/**/*.ts",
+            "!src/resolvers/io/**/*.ts",
+            "!src/resolvers/index.ts"
+        ],
+        "coverageThreshold": {
+            "global": {
+                "branches": 0,
+                "functions": 70,
+                "lines": 70,
+                "statements": 70
+            }
+        },
+        "moduleDirectories": [
+            "node_modules",
+            "../../common/node_modules"
+        ],
+        "testPathIgnorePatterns": [
+            "_integrationtests"
+        ],
+        "collectCoverage": true,
+        "coverageReporters": [
+            "text",
+            "html",
+            "json-summary",
+            "lcov"
+        ],
+        "transform": {
+            "^.+\\.(ts|tsx)$": "ts-jest"
+        },
+        "reporters": [
+            "default"
+        ],
+        "testMatch": [
+            "**/__tests__/**/*.ts?(x)",
+            "**/?(*.)(spec|test).ts?(x)"
+        ],
+        "testEnvironment": "node"
+    }
+}
