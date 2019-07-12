@@ -10,6 +10,7 @@ import styled from 'styled-components'
 
 const WIDTH = 1000
 const HEIGHT = 562.5
+const LOGO_URL = 'https://www.starbucks.ca/static/images/global/logo.svg'
 
 const S = {}
 S.TvContainer = styled.div`
@@ -38,7 +39,7 @@ S.BigGreenCircle = styled.div`
     position: absolute;
     top: -100px;
     right: 100px;
-    background-image: url('https://www.starbucks.ca/static/images/global/logo.svg');
+    background-image: url(${LOGO_URL});
     background-size: cover;
     opacity: 0.1;
 `
