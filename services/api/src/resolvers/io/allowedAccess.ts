@@ -3,6 +3,8 @@ import { createError } from 'apollo-errors'
 import * as aws from 'aws-sdk'
 aws.config.update({ region: process.env.AWS_REGION })
 
+const ERROR_MESSAGE = 'The provided credentials are invalid.'
+
 export default async ({ ctx, context, allowed }): Promise<User> => {
     /**
      * Temporarily returning mock user information
@@ -19,7 +21,7 @@ export default async ({ ctx, context, allowed }): Promise<User> => {
      * Option C:
      * We have permissions set on the object this api call is fetching
      * for example, productA has an owners array and readers array, and if
-     * this members id is included, they can access that object, otherwise not.
+     * this members id is included, they can access that object.
      * This allows us to not have to do permission checks at the api level, but
      * instead at the service level.
      *
@@ -30,6 +32,4 @@ export default async ({ ctx, context, allowed }): Promise<User> => {
         email: 'john@example.com',
         roles: ['superAdmin']
     }
-
-    //throw new (createGeneralError('The provided credentials are invalid.'))()
 }
