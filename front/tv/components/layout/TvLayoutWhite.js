@@ -3,7 +3,7 @@ import styled from 'styled-components'
 /**
  * TV Ratio is 16:9
  *
- * So for now we are hardcoding the size of the tv to:
+ * For now we are hardcoding the size of the tv to:
  * WIDTH: 1000px
  * HEIGHT: 562.5px
  */
