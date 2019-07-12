@@ -16,8 +16,6 @@
     "dependencies": {
         "ajv": "^6.10.0",
         "aws-xray-sdk": "^2.2.0",
-        "faker": "^4.1.0",
-        "moment": "^2.24.0",
         "uuid": "^3.3.2"
     },
     "devDependencies": {

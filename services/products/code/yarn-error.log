@@ -1,5 +1,5 @@
 Arguments: 
-  /usr/local/Cellar/node@8/8.16.0/bin/node /usr/local/Cellar/yarn/1.5.1_1/libexec/bin/yarn.js run deploy
+  /usr/local/Cellar/node@8/8.16.0/bin/node /usr/local/Cellar/yarn/1.5.1_1/libexec/bin/yarn.js remove faker
 
 PATH: 
   /usr/local/opt/node@8/bin:~/mongodb-osx-x86_64-enterprise-3.6.4/bin:/Users/garyjennings/.cargo/bin:/Users/garyjennings/Library/Android/sdk/platform-tools:/Users/garyjennings/Library/Android/sdk/tools:/Users/garyjennings/Library/Android/sdk/platform-tools:/Users/garyjennings/Library/Android/sdk/tools:/Library/Frameworks/Python.framework/Versions/3.5/bin:/Users/garyjennings/.local/bin:/Applications/MAMP/bin/php/php5.5.10/bin:/Users/garyjennings/.rbenv/shims:/Users/garyjennings/.rbenv/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/Library/Frameworks/Mono.framework/Versions/Current/Commands:/Users/garyjennings/.composer/vendor/bin:vendor/bin:/Users/garyjennings/.composer/vendor/bin
@@ -32,7 +32,6 @@ npm manifest:
       "dependencies": {
           "ajv": "^6.10.0",
           "aws-xray-sdk": "^2.2.0",
-          "faker": "^4.1.0",
           "moment": "^2.24.0",
           "uuid": "^3.3.2"
       },
@@ -5899,17 +5898,10 @@ Lockfile:
       readable-stream "^2.0.0"
 
 Trace: 
-  Error: Command failed.
-  Exit code: 1
-  Command: sh
-  Arguments: -c jest && npm run test-int && serverless deploy
-  Directory: /Users/garyjennings/Desktop/WEBDEV/starbucks-app-clone/services/products/code
-  Output:
-  
-      at ProcessTermError.MessageError (/usr/local/Cellar/yarn/1.5.1_1/libexec/lib/cli.js:186:110)
-      at new ProcessTermError (/usr/local/Cellar/yarn/1.5.1_1/libexec/lib/cli.js:226:113)
-      at ChildProcess.<anonymous> (/usr/local/Cellar/yarn/1.5.1_1/libexec/lib/cli.js:30281:17)
-      at emitTwo (events.js:126:13)
-      at ChildProcess.emit (events.js:214:7)
-      at maybeClose (internal/child_process.js:915:16)
-      at Process.ChildProcess._handle.onexit (internal/child_process.js:209:5)
+  Error: This module isn't specified in a manifest.
+      at new MessageError (/usr/local/Cellar/yarn/1.5.1_1/libexec/lib/cli.js:186:110)
+      at Object.<anonymous> (/usr/local/Cellar/yarn/1.5.1_1/libexec/lib/cli.js:60445:15)
+      at Generator.next (<anonymous>)
+      at step (/usr/local/Cellar/yarn/1.5.1_1/libexec/lib/cli.js:98:30)
+      at /usr/local/Cellar/yarn/1.5.1_1/libexec/lib/cli.js:109:13
+      at <anonymous>
