@@ -47,6 +47,9 @@ functions:
     getAllByType:
         handler: src/triggers/index.getAllByType
 
+    getAllFeaturedProducts:
+        handler: src/triggers/index.getAllFeaturedProducts
+
     get:
         handler: src/triggers/index.get
 

@@ -7,6 +7,11 @@ export default (infra: Infra) => ({
         return product
     },
 
+    getAllFeaturedProducts: async () => {
+        const product = await infra.repo.getAllFeaturedProducts()
+        return product
+    },
+
     getAllByType: async data => {
         const product = await infra.repo.getAllByType(data.type)
         return product

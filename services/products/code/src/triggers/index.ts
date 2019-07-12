@@ -8,6 +8,11 @@ export const getAll = async () => {
     return await domain(infra).getAll()
 }
 
+export const getAllFeaturedProducts = async () => {
+    const infra = setupInfra(io())
+    return await domain(infra).getAllFeaturedProducts()
+}
+
 export const getAllByType = async event => {
     validate.getAllByType(event)
     const infra = setupInfra(io())

@@ -3,12 +3,6 @@ const { GraphQLServerLambda } = require('graphql-yoga')
 import typeDefs from './src/schema/'
 
 export const server = (event, ctx, callback) => {
-    // return {
-    //     statusCode: 200,
-    //     body: JSON.stringify({
-    //         data: 'five'
-    //     })
-    // }
     if (event.source === 'serverless-plugin-warmup') {
         console.log('warm up')
         return

@@ -1,7 +1,11 @@
 export type Product = {
     id: string
     name: string
-    price: number
+    price: {
+        tall: Number
+        grande: Number
+        venti: Number
+    }
     imgUrl: string
     type: string
     description: string

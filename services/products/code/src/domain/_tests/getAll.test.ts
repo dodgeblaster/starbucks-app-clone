@@ -16,10 +16,10 @@ describe('getAll', () => {
         let infraState = []
         const mockInfra: Infra = infra({}, true, infraState)
         const result = await domain(mockInfra).getAll()
-        expect(result.length).toBe(2)
+        expect(result.length).toBe(4)
         expect(result[0].id.startsWith('product_')).toBeTruthy()
-        expect(result[0].name).toBe('Dark Coffee')
-        expect(result[0].imgUrl).toBe('https://example.jpg')
+        expect(result[0].name).toBe('Blonde Coffee')
+        expect(result[0].imgUrl).toBe('brewed-coffee/coffee.jpg')
         expect(result[0].description).toBe('text...')
     })
 })

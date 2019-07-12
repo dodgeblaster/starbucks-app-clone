@@ -2,66 +2,24 @@ import { useState } from 'react'
 import { useQuery } from 'react-apollo-hooks'
 import gql from 'graphql-tag'
 import Highlighted from './Presentation'
+import fallbackData from './_fallbackData'
 
 const POSTS = gql`
     query allProducts {
-        allProducts {
+        allFeaturedProducts {
             id
             name
-            price
+            price {
+                tall
+                grande
+                venti
+            }
             imgUrl
             type
             description
         }
     }
 `
-
-const mockData = [
-    {
-        name: 'Blonde Coffee',
-        imgUrl: 'brewed-coffee/coffee.jpg',
-        price: {
-            tall: 200,
-            grande: 300,
-            venti: 400
-        }
-    },
-    {
-        name: 'Cappucino',
-        imgUrl: 'espresso-drinks/cappucino/cappucino.jpg',
-        price: {
-            tall: 200,
-            grande: 300,
-            venti: 400
-        }
-    },
-    {
-        name: 'Caramel Macchiato',
-        imgUrl: 'espresso-drinks/macchiatto/caramel-macchiato.jpg',
-        price: {
-            tall: 200,
-            grande: 300,
-            venti: 400
-        }
-    },
-    {
-        name: 'Mocha Frappucino',
-        imgUrl:
-            'frappucino-blended-beverages/coffee-frappucino/mocha-frappucino.jpg',
-        price: {
-            tall: 200,
-            grande: 300,
-            venti: 400
-        }
-    }
-]
-
-const tweets = [
-    `Me and the gang at #starbucks getting cold drinks on a rainy day. Hopefully more ridiculous memories like that day soon`,
-    `Today is going to be a caffeinated day!`,
-    `Much love to the lady in front of me who paid for my Starbucks coffee this morning `,
-    `Enjoying my morning #coffee #starbucks`
-]
 
 export default () => {
     const { data, loading, error } = useQuery(POSTS)
@@ -73,13 +31,22 @@ export default () => {
         updateTweetIndex((tweetIndex + 1) % 4)
     }, 4000)
 
-    if (loading) {
-        return 'Loading...'
-    }
+    /**
+     * Because this app is going to be displaying on a TV for customers to see,
+     * displaying an error to customers may not be the right way to handle api errors.
+     * Instead, we can show fallback data.
+     */
+
+    const featuredProducs = error
+        ? fallbackData.featuredProducts
+        : data.allFeaturedProducts
+
+    const tweets = fallbackData.tweets
 
     return (
         <Highlighted
-            data={mockData}
+            loading={loading}
+            data={featuredProducs}
             highlighting={highlightingIndex}
             tweetIndex={tweetIndex}
             tweet={tweets[tweetIndex]}

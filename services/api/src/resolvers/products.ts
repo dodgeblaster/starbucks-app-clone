@@ -5,41 +5,92 @@ const createGeneralError = x =>
         message: x
     })
 
-export default io => {
-    // const stage = process.env.STAGE
-    // const actions = {
-    //     getProduct: async () =>
-    //         await io.lambda(`origamai-groups-${stage}-getAllProjects`, {}),
-    //     getAllProducts: async id =>
-    //         await io.lambda(
-    //             `origamai-groups-${stage}-getOrganizationsProjects`,
-    //             id
-    //         ),
+const allProducts = [
+    {
+        id: 'product_1234',
+        type: 'coffee',
+        description: 'text...',
+        name: 'Blonde Coffee',
+        imgUrl: 'brewed-coffee/coffee.jpg',
+        price: {
+            tall: 200,
+            grande: 300,
+            venti: 400
+        }
+    },
+    {
+        id: 'product_1235',
+        type: 'coffee',
+        description: 'text...',
+        name: 'Cappucino',
+        imgUrl: 'espresso-drinks/cappucino/cappucino.jpg',
+        price: {
+            tall: 200,
+            grande: 300,
+            venti: 400
+        }
+    },
+    {
+        id: 'product_1236',
+        type: 'coffee',
+        description: 'text...',
+        name: 'Caramel Macchiato',
+        imgUrl: 'espresso-drinks/macchiatto/caramel-macchiato.jpg',
+        price: {
+            tall: 200,
+            grande: 300,
+            venti: 400
+        }
+    },
+    {
+        id: 'product_1237',
+        type: 'coffee',
+        description: 'text...',
+        name: 'Mocha Frappucino',
+        imgUrl:
+            'frappucino-blended-beverages/coffee-frappucino/mocha-frappucino.jpg',
+        price: {
+            tall: 200,
+            grande: 300,
+            venti: 400
+        }
+    }
+]
 
-    //         await io.lambda(`origamai-groups-${stage}-removeProject`, id)
-    // }
+export default io => {
+    const stage = process.env.STAGE
+    const actions = {
+        getAll: async () =>
+            await io.lambda(`starbucksclone-products-${stage}-getAll`),
+
+        getAllFeaturedProducts: async () =>
+            await io.lambda(
+                `starbucksclone-products-${stage}-getAllFeaturedProducts`
+            )
+    }
 
     return {
         Query: {
             allProducts: async (root, data, ctx, info) => {
-                return [
-                    {
-                        id: 'product_1234',
-                        name: 'Dark Coffee',
-                        price: 400,
-                        imgUrl: 'https://google.com',
-                        type: 'coffee',
-                        description: 'text...'
-                    },
-                    {
-                        id: 'product_1235',
-                        name: 'Light Coffee',
-                        price: 400,
-                        imgUrl: 'https://google.com',
-                        type: 'coffee',
-                        description: 'text...'
-                    }
-                ]
+                const products = await actions.getAllFeaturedProducts()
+
+                if (products.error) {
+                    throw new (createGeneralError(
+                        'There was a problem getting all the products'
+                    ))()
+                }
+                return products
+            },
+
+            allFeaturedProducts: async (root, data, ctx, info) => {
+                const featuredProducts = await actions.getAllFeaturedProducts()
+
+                if (featuredProducts.error) {
+                    throw new (createGeneralError(
+                        'There was a problem getting all the featured products'
+                    ))()
+                }
+                return featuredProducts
             },
 
             product: async (root, data, ctx, info) => {
@@ -48,7 +99,7 @@ export default io => {
                 //     context: data.context,
                 //     allowed: ['all']
                 // })
-                // const x = await actions.getProject({
+                // const x = await actions.getProduct({
                 //     id: data.id,
                 //     context: data.context
                 // })
@@ -60,26 +111,12 @@ export default io => {
                 // }
                 // return x
 
-                return {
-                    id: 'product_1234',
-                    name: 'Dark Coffee',
-                    price: 400,
-                    imgUrl: 'https://google.com',
-                    type: 'coffee',
-                    description: 'text...'
-                }
+                return allProducts[0]
             }
         },
         Mutation: {
             create: async (root, data, ctx, info) => {
-                return {
-                    id: 'product_1234',
-                    name: 'Dark Coffee',
-                    price: 400,
-                    imgUrl: 'https://google.com',
-                    type: 'coffee',
-                    description: 'text...'
-                }
+                return allProducts[0]
             }
         }
     }

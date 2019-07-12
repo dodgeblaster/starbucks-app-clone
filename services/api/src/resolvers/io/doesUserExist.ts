@@ -1,12 +1,14 @@
 import * as aws from 'aws-sdk'
 aws.config.update({ region: process.env.AWS_REGION })
 
-export default async email => {
+const MEMBER_TABLE = `members-${process.env.STAGE}`
+
+export default async (email: String): Promise<Boolean> => {
     const dynamoDb = new aws.DynamoDB.DocumentClient({
         region: process.env.AWS_REGION
     })
     const params = {
-        TableName: `origamai-members-${process.env.STAGE}`,
+        TableName: MEMBER_TABLE,
         IndexName: 'GSI1',
         KeyConditionExpression: 'GSI1 = :email',
         ExpressionAttributeValues: {

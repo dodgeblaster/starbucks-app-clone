@@ -6,6 +6,7 @@ export type Repo = {
     remove: (data: Product) => Promise<Product>
     get: (id: string) => Promise<Product>
     getAllByType: (type: string) => Promise<Product[]>
+    getAllFeaturedProducts: () => Promise<Product[]>
     getAll: () => Promise<Product[]>
 }
 export type Emit = {}

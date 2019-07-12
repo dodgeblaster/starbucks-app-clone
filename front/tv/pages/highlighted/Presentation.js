@@ -38,26 +38,35 @@ S.Title = styled.h1`
     text-align: right;
 `
 
+const Content = props => {
+    if (props.loading) {
+        return <p>Loading</p>
+    }
+
+    return props.data.map((x, i) => (
+        <ProductTile
+            key={x.id}
+            name={x.name}
+            imgUrl={x.imgUrl}
+            highlighted={props.highlighting === i}
+            priceTall={x.price.tall}
+            priceGrande={x.price.grande}
+            priceVenti={x.price.venti}
+        />
+    ))
+}
+
 export default props => (
     <TvLayout>
         <S.Title>
             The happiest hour <br />
-            of your day
+            of the day
         </S.Title>
 
         <TweetDisplay tweets={props.tweets} tweet={props.tweet} />
 
         <S.Container>
-            {props.data.map((x, i) => (
-                <ProductTile
-                    name={x.name}
-                    imgUrl={x.imgUrl}
-                    highlighted={props.highlighting === i}
-                    priceTall={x.price.tall}
-                    priceGrande={x.price.grande}
-                    priceVenti={x.price.venti}
-                />
-            ))}
+            <Content {...props} />
         </S.Container>
     </TvLayout>
 )
