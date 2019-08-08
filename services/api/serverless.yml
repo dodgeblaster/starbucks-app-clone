@@ -4,7 +4,6 @@ plugins:
     - serverless-webpack
     - serverless-offline
     - serverless-pseudo-parameters
-    #- serverless-plugin-warmup
 
 provider:
     name: aws
@@ -32,8 +31,6 @@ custom:
     region: ${opt:region, self:provider.region}
     userPool: origamai-users
     table: users
-    # warmup:
-    #     default: true
 
 functions:
     graphql:
@@ -45,5 +42,6 @@ functions:
                   method: post
                   cors: true
                   #authorizer: ${file(./env.json):${opt:stage, 'dev'}.COGNITO_ARN}
+# Note: When we need users, we can uncomment the below resources:
 # resources:
 #     - ${file(resources/cognito.yml)}
