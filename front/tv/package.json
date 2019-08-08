@@ -6,7 +6,9 @@
     "scripts": {
         "dev": "next",
         "build": "next build",
-        "start": "next start"
+        "start": "next start",
+        "export": "next export",
+        "deploy-prod": "NODE_ENV=production REACT_APP_STAGE=prod yarn run export && sls client deploy --no-confirm --stage prod"
     },
     "dependencies": {
         "apollo-boost": "^0.3.1",
@@ -23,5 +25,8 @@
         "react-apollo-hooks": "^0.4.5",
         "react-dom": "^16.8.6",
         "styled-components": "^4.2.0"
+    },
+    "devDependencies": {
+        "serverless-finch": "^2.4.2"
     }
 }

@@ -1,6 +1,25 @@
-import styled from 'styled-components'
+import styled, { keyframes } from 'styled-components'
+
+const fadeIn = keyframes`
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+`
 
 const S = {}
+S.Container = styled.div`
+    opacity: 0;
+    margin-bottom: 40px;
+    animation-duration: 0.5s;
+    animation-fill-mode: forwards;
+
+    animation-name: ${fadeIn};
+    animation-timing-function: linear;
+`
+
 S.Title = styled.div`
     color: white;
     font-size: 20px;
@@ -54,9 +73,9 @@ S.ProductCal = styled.p`
 `
 
 export default props => (
-    <div
+    <S.Container
         style={{
-            marginBottom: 40
+            animationDelay: props.time ? props.time + 's' : '0s'
         }}
     >
         <S.Title>{props.category.name}</S.Title>
@@ -80,5 +99,5 @@ export default props => (
                 <S.ProductCal>{x.calories}</S.ProductCal>
             </S.ProductContainer>
         ))}
-    </div>
+    </S.Container>
 )

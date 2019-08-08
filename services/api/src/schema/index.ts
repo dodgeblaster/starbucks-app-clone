@@ -1,5 +1,4 @@
 export default `
-
 type CoffeePrice {
     tall: Int
     grande: Int
@@ -15,13 +14,16 @@ type Product {
     description: String
 }
 
-type Query {
-    product(id: String): Product
-    allProducts: [Product]
-    allFeaturedProducts: [Product]
+type Tweet {
+    about: String
+    hashtags: [String]
+    content: String
 }
 
-type Mutation {
-    create(name: String): Product
+type Query {
+    allProducts: [Product]
+    allFeaturedProducts: [Product]
+    allFeaturedTweets: [Tweet]
+    allGeneralTweets: [Tweet]
 }
 `

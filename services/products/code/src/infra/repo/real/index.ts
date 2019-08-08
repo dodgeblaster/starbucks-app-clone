@@ -49,6 +49,16 @@ export default (io): Repo => ({
     },
     create: async data => {
         // TODO: write dynamo function
+        const x = await io.dynamo(table).put({
+            PK: data.type,
+            SK: data.id,
+            description: data.description,
+            name: data.name,
+            imgUrl: data.imgUrl,
+            price: data.price
+        })
+        console.log('__))+)+) ', table)
+        console.log('__))+)+) ', x)
         return data
     },
     update: async data => {

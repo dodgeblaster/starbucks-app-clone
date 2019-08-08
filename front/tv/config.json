@@ -1,0 +1,11 @@
+{
+    "prod": {
+        "BUCKET_NAME": "tv.starbucksclone.garysjennings-dev.com"
+    },
+    "qa": {
+        "BUCKET_NAME": "tv.starbucksclone-qa"
+    },
+    "dev": {
+        "BUCKET_NAME": "tv.starbucksclone-dev"
+    }
+}

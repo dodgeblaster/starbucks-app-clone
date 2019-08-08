@@ -1,9 +1,24 @@
-import styled from 'styled-components'
+import styled, { keyframes } from 'styled-components'
+
+const fadeIn = keyframes`
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+`
 
 const imageSize = 140
 
 const S = {}
 S.Container = styled.div`
+    opacity: 0;
+    animation-duration: 0.5s;
+    animation-fill-mode: forwards;
+
+    animation-name: ${fadeIn};
+    animation-timing-function: linear;
     height: 280px;
     width: 200px;
     background: #018861;
@@ -65,7 +80,7 @@ S.Image = styled.div`
     background-position: center center;
 `
 
-const tempConvertNumberToPrice = x =>
+const convertNumberToPrice = x =>
     '$' +
     x
         .toString()
@@ -82,7 +97,8 @@ const tempConvertNumberToPrice = x =>
 export default props => (
     <S.Container
         style={{
-            transform: props.highlighted ? 'scale(1.1)' : 'scale(1)'
+            transform: props.highlighted ? 'scale(1.1)' : 'scale(1)',
+            animationDelay: props.time ? props.time + 's' : '0s'
         }}
     >
         <S.ImageContainer>
@@ -97,15 +113,15 @@ export default props => (
         <div>
             <S.PriceEntry>
                 <S.Size>Tall</S.Size>
-                <S.Price>{tempConvertNumberToPrice(props.priceTall)}</S.Price>
+                <S.Price>{convertNumberToPrice(props.priceTall)}</S.Price>
             </S.PriceEntry>
             <S.PriceEntry>
                 <S.Size>Grande</S.Size>
-                <S.Price>{tempConvertNumberToPrice(props.priceGrande)}</S.Price>
+                <S.Price>{convertNumberToPrice(props.priceGrande)}</S.Price>
             </S.PriceEntry>
             <S.PriceEntry>
                 <S.Size>Venti</S.Size>
-                <S.Price>{tempConvertNumberToPrice(props.priceVenti)}</S.Price>
+                <S.Price>{convertNumberToPrice(props.priceVenti)}</S.Price>
             </S.PriceEntry>
         </div>
     </S.Container>

@@ -1,0 +1,16 @@
+service: starbucks-clone-front-tv
+
+provider:
+    name: aws
+    stage: ${opt:stage, 'dev'}
+    runtime: nodejs8.10
+
+plugins:
+    - serverless-finch
+
+custom:
+    client:
+        bucketName: ${file(./config.json):${opt:stage, 'dev'}.BUCKET_NAME}
+        distributionFolder: /out
+        indexDocument: index.html
+        errorDocument: index.html

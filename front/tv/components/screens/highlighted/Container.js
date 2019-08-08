@@ -18,17 +18,36 @@ const POSTS = gql`
             type
             description
         }
+
+        allFeaturedTweets {
+            about
+            hashtags
+            content
+        }
+
+        allGeneralTweets {
+            hashtags
+            content
+        }
     }
 `
+
+const applyTweetsToProducts = (products, tweets, fallbackTweets) => {
+    return products.map(product => {
+        const relevantTweets = tweets.filter(x => x.about === product.id)
+        return {
+            ...product,
+            tweets: relevantTweets.length > 0 ? relevantTweets : fallbackTweets
+        }
+    })
+}
 
 export default () => {
     const { data, loading, error } = useQuery(POSTS)
     const [highlightingIndex, updateHighlightingIndex] = useState(0)
-    const [tweetIndex, updateTweetIndex] = useState(0)
 
     setTimeout(() => {
         updateHighlightingIndex((highlightingIndex + 1) % 4)
-        updateTweetIndex((tweetIndex + 1) % 4)
     }, 4000)
 
     /**
@@ -37,19 +56,29 @@ export default () => {
      * Instead, we can show fallback data.
      */
 
-    const featuredProducs = error
-        ? fallbackData.featuredProducts
-        : data.allFeaturedProducts
+    if (loading) {
+        return <Highlighted loading={true} />
+    }
 
-    const tweets = fallbackData.tweets
+    if (error) {
+        return (
+            <Highlighted
+                data={fallbackData.featuredProducts}
+                highlighting={highlightingIndex}
+            />
+        )
+    }
+
+    const productsWithTweets = applyTweetsToProducts(
+        data.allFeaturedProducts,
+        data.allFeaturedTweets,
+        data.allGeneralTweets
+    )
 
     return (
         <Highlighted
-            loading={loading}
-            data={featuredProducs}
+            data={productsWithTweets}
             highlighting={highlightingIndex}
-            tweetIndex={tweetIndex}
-            tweet={tweets[tweetIndex]}
         />
     )
 }

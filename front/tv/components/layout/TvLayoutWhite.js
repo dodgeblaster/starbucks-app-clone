@@ -17,7 +17,7 @@ S.TvContainer = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    background: #eee;
+    background: rgba(1, 136, 97, 0.05);
     min-height: 100vh;
     flex-direction: column;
 `

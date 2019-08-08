@@ -2,11 +2,22 @@ import io from '../../../../io'
 import repository from '../'
 
 describe('repo', () => {
-    test('test starter', async () => {
-        const repo = repository(io())
-        // TODO: write integration tests for repo
-        // const products = await repo.getAllFeaturedProducts()
+    test('create will return input', async () => {
+        const input = {
+            id: 'product_1234',
+            type: 'coffee',
+            price: {
+                tall: 300,
+                grande: 400,
+                venti: 500
+            },
+            imgUrl: 'www.site.com',
+            description: 'text...',
+            name: 'Blonde Coffee'
+        }
 
-        expect(1).toBe(1)
+        const repo = repository(io())
+        const product = await repo.create(input)
+        expect(product).toEqual(input)
     })
 })

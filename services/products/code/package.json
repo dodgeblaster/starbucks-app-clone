@@ -9,7 +9,7 @@
         "deploy-qa": "serverless deploy --stage qa",
         "deploy-prod": "serverless deploy --stage prod",
         "test-unit": "./node_modules/.bin/jest --watch --verbose=false",
-        "test-int": "jest -c jest-int-config.json --runInBand --detectOpenHandles",
+        "test-int": "TABLE=starbucksclone-products jest -c jest-int-config.json --runInBand --detectOpenHandles",
         "ci-test": "jest && npm run test-int t",
         "ci-deploy": "serverless deploy"
     },

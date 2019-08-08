@@ -5,19 +5,6 @@ const createGeneralError = x =>
         message: x
     })
 
-const mockProduct = {
-    id: 'product_1234',
-    type: 'coffee',
-    description: 'text...',
-    name: 'Blonde Coffee',
-    imgUrl: 'brewed-coffee/coffee.jpg',
-    price: {
-        tall: 200,
-        grande: 300,
-        venti: 400
-    }
-}
-
 export default io => {
     const stage = process.env.STAGE
     const actions = {
@@ -50,15 +37,6 @@ export default io => {
                     ))()
                 }
                 return featuredProducts
-            },
-
-            product: async (root, data, ctx, info) => {
-                return mockProduct
-            }
-        },
-        Mutation: {
-            create: async (root, data, ctx, info) => {
-                return mockProduct
             }
         }
     }

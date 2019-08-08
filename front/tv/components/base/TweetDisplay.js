@@ -45,9 +45,9 @@ export default props => (
             <TwitterIcon />
         </S.IconWrapper>
 
-        <S.TweetContent key={'tweet-' + props.tweetIndex}>
-            <strong>#starbucks</strong> <br />
-            {props.tweet}
+        <S.TweetContent>
+            <strong>{props.tweet.hashtags.map(x => x + ' ')}</strong> <br />
+            {props.tweet.content}
         </S.TweetContent>
     </S.TweetContainer>
 )
