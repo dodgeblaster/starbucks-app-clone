@@ -4,6 +4,7 @@ import Link from 'next/link'
 import gql from 'graphql-tag'
 import { useQuery } from 'react-apollo-hooks'
 
+const LOGO_URL = 'https://www.starbucks.ca/static/images/global/logo.svg'
 const PREFETCH = gql`
     query allProducts {
         allFeaturedProducts {
@@ -111,7 +112,6 @@ S.Wrapper = styled.div`
     position: relative;
 `
 
-const LOGO_URL = 'https://www.starbucks.ca/static/images/global/logo.svg'
 S.BigGreenCircle = styled.div`
     z-index: 0;
     background: #e5f3ef;
@@ -130,7 +130,7 @@ S.BigGreenCircle = styled.div`
 `
 
 export default () => {
-    const x = useQuery(PREFETCH)
+    useQuery(PREFETCH)
 
     return (
         <S.Screen>

@@ -1,14 +1,14 @@
 Arguments: 
-  /usr/local/lib/node_modules/node/bin/node /usr/local/Cellar/yarn/1.5.1_1/libexec/bin/yarn.js run test-unit
+  /usr/local/Cellar/node@8/8.16.0/bin/node /usr/local/Cellar/yarn/1.5.1_1/libexec/bin/yarn.js run deploy-prod
 
 PATH: 
-  ~/mongodb-osx-x86_64-enterprise-3.6.4/bin:/Users/garyjennings/.cargo/bin:/Users/garyjennings/Library/Android/sdk/platform-tools:/Users/garyjennings/Library/Android/sdk/tools:/Users/garyjennings/Library/Android/sdk/platform-tools:/Users/garyjennings/Library/Android/sdk/tools:/Library/Frameworks/Python.framework/Versions/3.5/bin:/Users/garyjennings/.local/bin:/Applications/MAMP/bin/php/php5.5.10/bin:/Users/garyjennings/.rbenv/shims:/Users/garyjennings/.rbenv/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/Library/Frameworks/Mono.framework/Versions/Current/Commands:/Users/garyjennings/.composer/vendor/bin:vendor/bin:/Users/garyjennings/.composer/vendor/bin
+  /usr/local/opt/node@8/bin:~/mongodb-osx-x86_64-enterprise-3.6.4/bin:/Users/garyjennings/.cargo/bin:/Users/garyjennings/Library/Android/sdk/platform-tools:/Users/garyjennings/Library/Android/sdk/tools:/Users/garyjennings/Library/Android/sdk/platform-tools:/Users/garyjennings/Library/Android/sdk/tools:/Library/Frameworks/Python.framework/Versions/3.5/bin:/Users/garyjennings/.local/bin:/Applications/MAMP/bin/php/php5.5.10/bin:/Users/garyjennings/.rbenv/shims:/Users/garyjennings/.rbenv/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/Library/Frameworks/Mono.framework/Versions/Current/Commands:/Users/garyjennings/.composer/vendor/bin:vendor/bin:/Users/garyjennings/.composer/vendor/bin
 
 Yarn version: 
   1.5.1
 
 Node version: 
-  12.4.0
+  8.16.0
 
 Platform: 
   darwin x64
@@ -29,3 +29,4 @@ Trace:
       at Generator.next (<anonymous>)
       at step (/usr/local/Cellar/yarn/1.5.1_1/libexec/lib/cli.js:98:30)
       at /usr/local/Cellar/yarn/1.5.1_1/libexec/lib/cli.js:109:13
+      at <anonymous>

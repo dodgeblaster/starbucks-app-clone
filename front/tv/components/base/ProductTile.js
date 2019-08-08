@@ -16,7 +16,6 @@ S.Container = styled.div`
     opacity: 0;
     animation-duration: 0.5s;
     animation-fill-mode: forwards;
-
     animation-name: ${fadeIn};
     animation-timing-function: linear;
     height: 280px;
@@ -28,13 +27,11 @@ S.Container = styled.div`
     margin-top: ${imageSize / 2}px;
     padding: ${imageSize / 2 + 20}px 20px 40px 20px;
     transition: 0.5s;
-
-    background: linear-gradient(rgba(0, 124, 89, 0), rgba(0, 124, 89, 1) 60%),
-        url('/static/selected-background.svg');
-
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    background: linear-gradient(rgba(0, 124, 89, 0), rgba(0, 124, 89, 1) 60%),
+        url('/static/selected-background.svg');
 `
 
 S.Title = styled.h2`

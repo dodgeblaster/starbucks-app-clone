@@ -12,6 +12,7 @@ const animateIn = keyframes`
     opacity: 1;
   }
 `
+
 const S = {}
 S.TweetContainer = styled.div`
     position: absolute;
