@@ -57,8 +57,7 @@ export default (io): Repo => ({
             imgUrl: data.imgUrl,
             price: data.price
         })
-        console.log('__))+)+) ', table)
-        console.log('__))+)+) ', x)
+    
         return data
     },
     update: async data => {
