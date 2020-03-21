@@ -48,7 +48,6 @@ export default (io): Repo => ({
         return x.map(formatProduct)[0]
     },
     create: async data => {
-        // TODO: write dynamo function
         const x = await io.dynamo(table).put({
             PK: data.type,
             SK: data.id,
@@ -57,6 +56,7 @@ export default (io): Repo => ({
             imgUrl: data.imgUrl,
             price: data.price
         })
+
         return data
     },
     update: async data => {
