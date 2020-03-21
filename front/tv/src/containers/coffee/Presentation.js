@@ -1,6 +1,6 @@
 import styled from 'styled-components'
-import TvLayout from '../../layout/TvLayoutBlack'
-import BoardCategory from '../../base/BoardCategory'
+import TvLayout from '../../components/layout/TvLayoutBlack'
+import BoardCategory from '../../components/base/BoardCategory'
 
 const S = {}
 S.Container = styled.div`

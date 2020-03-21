@@ -4,6 +4,16 @@ import gql from 'graphql-tag'
 import Highlighted from './Presentation'
 import fallbackData from './_fallbackData'
 
+
+
+
+
+
+
+
+
+
+
 const POSTS = gql`
     query allProducts {
         allFeaturedProducts {

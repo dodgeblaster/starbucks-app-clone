@@ -1,7 +1,7 @@
 import styled from 'styled-components'
-import TvLayout from '../../layout/TvLayoutWhite'
-import ProductTile from '../../base/ProductTile'
-import TweetDisplay from '../../base/TweetDisplay'
+import TvLayout from '../../components/layout/TvLayoutWhite'
+import ProductTile from '../../components/base/ProductTile'
+import TweetDisplay from '../../components/base/TweetDisplay'
 
 const S = {}
 S.Container = styled.div`

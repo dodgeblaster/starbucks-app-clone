@@ -1,2 +1,2 @@
-import Highlighted from '../components/screens/highlighted'
+import Highlighted from '../src/containers/highlighted/Container.js'
 export default () => <Highlighted />

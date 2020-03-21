@@ -1,2 +1,2 @@
-import CoffeeList from '../components/screens/coffee'
+import CoffeeList from '../src/containers/coffee/Container'
 export default () => <CoffeeList />

@@ -91,11 +91,17 @@ const convertNumberToPrice = x =>
         })
         .join('')
 
+const shadow = {
+    small: `0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24)`,
+    raised: `0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22)`
+}
+
 export default props => (
     <S.Container
         style={{
             transform: props.highlighted ? 'scale(1.1)' : 'scale(1)',
-            animationDelay: props.time ? props.time + 's' : '0s'
+            animationDelay: props.time ? props.time + 's' : '0s',
+            boxShadow: props.highlighted ? shadow.raised : shadow.small
         }}
     >
         <S.ImageContainer>
