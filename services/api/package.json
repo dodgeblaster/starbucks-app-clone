@@ -32,7 +32,7 @@
         "@types/aws-lambda": "8.10.1",
         "@types/jest": "^21.1.5",
         "@types/node": "^8.0.57",
-        "aws-sdk": "^2.290.0",
+        "aws-sdk": "^2.814.0",
         "jest": "^23.6.0",
         "serverless": "^1.30.0",
         "serverless-offline": "^3.25.7",
